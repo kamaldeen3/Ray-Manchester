@@ -1,0 +1,47 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'anyapp/styles/about.css' %}">
+{% endblock head %}
+
+{% block content %}
+
+<div class="container">
+	<header class="about-hero">
+		<h1>About Ray's Clothiers</h1>
+		<p>Thoughtfully made clothing designed for everyday life — seasonal collections, honest prices.</p>
+	</header>
+
+	<div class="story">
+		<div>
+			<h2>Our Story</h2>
+			<p>Ray's Clothiers started as a small neighbourhood stall with a simple idea: clothing should feel good, look good, and last. We partner with ethical mills and select timeless fabrics so each piece works hard in your wardrobe. Over the years we grew into a small team focused on responsible production and clear pricing.</p>
+
+			<h3>Craft & Materials</h3>
+			<p>We choose natural fibres and durable weaves, prioritising comfort and longevity. Our product team tests fabrics for fit and wear so that every collection improves season after season.</p>
+		</div>
+
+		<aside class="values">
+			<div class="value">
+				<h4>Quality First</h4>
+				<p>Durable construction and honest materials.</p>
+			</div>
+			<div class="value">
+				<h4>Transparent Pricing</h4>
+				<p>No inflated markups — fair costs for fair products.</p>
+			</div>
+			<div class="value">
+				<h4>Sustainable Practices</h4>
+				<p>Careful sourcing and low-waste production runs.</p>
+			</div>
+		</aside>
+	</div>
+
+	<section style="margin-top:1.5rem">
+		<h3>Meet The Team</h3>
+		<p style="color:#6b7280">A small group of designers, sewers, and problem-solvers building better basics.</p>
+	</section>
+</div>
+
+{% endblock content %}

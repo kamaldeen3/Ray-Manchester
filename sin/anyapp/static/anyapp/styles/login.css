@@ -1,0 +1,16 @@
+/* Login & Register styles */
+:root{--accent:#ff6b6b;--muted:#6b7280;--bg:#fff;--surface:#fff;--text:#0f172a}
+body{font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;background:#ffffff;margin:0;color:#0f172a}
+.auth-wrapper{min-height:70vh;display:flex;align-items:center;justify-content:center;padding:2rem}
+.auth-card{background:#fff;padding:2rem;border-radius:12px;box-shadow:0 6px 16px rgba(15,23,42,0.04);width:100%;max-width:420px}
+.auth-card h1{margin:0 0 1rem;font-size:1.25rem}
+.auth-card form{display:flex;flex-direction:column;gap:.75rem}
+.auth-card input{padding:.7rem .8rem;border-radius:8px;border:1px solid rgba(15,23,42,0.08);font-size:1rem;background:transparent;color:#0f172a}
+.auth-card input:focus{outline:none;box-shadow:0 0 0 3px rgba(85,103,255,0.06);border-color:rgba(85,103,255,0.2)}
+.auth-card .actions{display:flex;justify-content:space-between;align-items:center;margin-top:.5rem}
+.auth-card .btn{padding:.6rem .9rem;border-radius:8px;border:none;cursor:pointer}
+.auth-card .btn.primary{background:#ff6b6b;color:#fff}
+.auth-card .small{color:#6b7280;font-size:.9rem}
+
+@media(max-width:480px){.auth-card{padding:1rem}}
+

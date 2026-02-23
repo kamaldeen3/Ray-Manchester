@@ -1,0 +1,136 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0px;
+  font-family: 'segoe ui';
+}
+
+.nav {
+  height: 50px;
+  width: 100%;
+  background-color: #4d4d4d;
+  position: relative;
+}
+
+.nav > .nav-header {
+  display: inline;
+}
+
+.nav > .nav-header > .nav-title {
+  display: inline-block;
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  padding: 8px 12px 8px 12px;
+  text-decoration: none;
+}
+
+.nav > .nav-btn {
+  display: none;
+}
+
+.nav > .nav-links {
+  display: inline;
+  float: right;
+  font-size: 18px;
+}
+
+.nav > .nav-links > a {
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #efefef;
+}
+
+.nav > .nav-links > a:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode-btn {
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  background: none;
+  border: none;
+  color: #efefef;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dark-mode-btn:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode-icon {
+  display: inline-block;
+  font-size: 18px;
+}
+ 
+
+.nav > #nav-check {
+  display: none;
+}
+
+@media (max-width:600px) {
+  .nav > .nav-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+  .nav > .nav-btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+    cursor: pointer;
+  }
+  .nav > .nav-btn > label:hover,
+  .nav #nav-check:checked ~ .nav-btn > label {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .nav > .nav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: #eee;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+  }
+  .nav > .nav-links {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: #333;
+    max-height: 0px;
+    transition: max-height 0.3s ease-in;
+    overflow: hidden;
+    top: 50px;
+    left: 0px;
+  }
+  .nav > .nav-links > a {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    border-bottom: 1px solid #522;
+  }
+  .nav > .nav-links > a:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .nav > .nav-links > .dark-mode-btn {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: none;
+  }
+  .nav > #nav-check:not(:checked) ~ .nav-links {
+    max-height: 0px;
+  }
+  .nav > #nav-check:checked ~ .nav-links {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+}

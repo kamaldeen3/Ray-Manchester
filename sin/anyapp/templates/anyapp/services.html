@@ -1,0 +1,65 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'anyapp/styles/services.css' %}">
+{% endblock head %}
+
+{% block content %}
+<div class="container">
+	<header style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
+		<h1>Shop Collections</h1>
+		<form class="filters" method="GET" action="">
+			<input class="select" name="q" placeholder="Search products..."/>
+			<select class="select" name="category">
+				<option value="">All</option>
+				<option>Jackets</option>
+				<option>Shirts</option>
+				<option>Tees</option>
+			</select>
+		</form>
+	</header>
+
+	<section class="products-grid">
+		<article class="product-card">
+			<img src="{% static 'anyapp/images/shopping.webp' %}" alt="Classic Denim Jacket">
+			<div class="info">
+				<h4>Classic Denim Jacket</h4>
+				<p class="meta">Blue • Sizes S–XL</p>
+				<p class="price">£59.99</p>
+				<div style="margin-top:auto;display:flex;gap:.5rem">
+					<a class="btn" href="{% url 'services' %}">View</a>
+					<button class="btn outline">Add to cart</button>
+				</div>
+			</div>
+		</article>
+
+		<article class="product-card">
+			<img src="{% static 'images/product2.jpg' %}" alt="Relaxed Linen Shirt">
+			<div class="info">
+				<h4>Relaxed Linen Shirt</h4>
+				<p class="meta">Beige • Lightweight</p>
+				<p class="price">£34.99</p>
+				<div style="margin-top:auto;display:flex;gap:.5rem">
+					<a class="btn" href="{% url 'services' %}">View</a>
+					<button class="btn outline">Add to cart</button>
+				</div>
+			</div>
+		</article>
+
+		<article class="product-card">
+			<img src="{% static 'images/product3.jpg' %}" alt="Everyday Cotton Tee">
+			<div class="info">
+				<h4>Everyday Cotton Tee</h4>
+				<p class="meta">White • Organic cotton</p>
+				<p class="price">£14.99</p>
+				<div style="margin-top:auto;display:flex;gap:.5rem">
+					<a class="btn" href="{% url 'services' %}">View</a>
+					<button class="btn outline">Add to cart</button>
+				</div>
+			</div>
+		</article>
+	</section>
+</div>
+
+{% endblock content %}

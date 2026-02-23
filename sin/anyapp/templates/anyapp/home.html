@@ -1,0 +1,83 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'anyapp/styles/home.css' %}">
+{% endblock head %}
+
+{% block content %}
+<header class="hero">
+	<div class="hero-inner">
+		<h1>Ray's Clothiers</h1>
+		<p>Everyday essentials & modern staples — crafted with care.</p>
+		<div class="hero-cta">
+			<a class="btn primary" href="{% url 'services' %}">Shop Collections</a>
+			<a class="btn ghost" href="{% url 'about' %}">About Us</a>
+		</div>
+	</div>
+</header>
+
+<main class="container">
+	<section class="intro">
+		<h2>New Arrivals</h2>
+		<p>Hand-picked styles for the season. Comfortable, sustainable, and versatile.</p>
+	</section>
+
+	<section class="products">
+		<h3>Featured</h3>
+		<div class="grid">
+			<article class="card">
+				<img src="{% static 'anyapp/images/shopping.webp' %}" alt="Denim Jacket">
+				<div class="card-body">
+					<h4>Classic Denim Jacket</h4>
+					<p class="price">£59.99</p>
+					<div class="card-actions">
+						<a href="{% url 'services' %}" class="btn">View</a>
+						<button class="btn outline">Add</button>
+					</div>
+				</div>
+			</article>
+
+			<article class="card">
+				<img src="{% static 'images/product2.jpg' %}" alt="Linen Shirt">
+				<div class="card-body">
+					<h4>Relaxed Linen Shirt</h4>
+					<p class="price">£34.99</p>
+					<div class="card-actions">
+						<a href="{% url 'services' %}" class="btn">View</a>
+						<button class="btn outline">Add</button>
+					</div>
+				</div>
+			</article>
+
+			<article class="card">
+				<img src="{% static 'images/product3.jpg' %}" alt="Everyday Tee">
+				<div class="card-body">
+					<h4>Everyday Cotton Tee</h4>
+					<p class="price">£14.99</p>
+					<div class="card-actions">
+						<a href="{% url 'services' %}" class="btn">View</a>
+						<button class="btn outline">Add</button>
+					</div>
+				</div>
+			</article>
+		</div>
+	</section>
+
+	<section class="info-grid">
+		<div class="info">
+			<h4>Free Returns</h4>
+			<p>30-day returns on all orders.</p>
+		</div>
+		<div class="info">
+			<h4>Worldwide Shipping</h4>
+			<p>Fast, tracked delivery.</p>
+		</div>
+		<div class="info">
+			<h4>Quality Promise</h4>
+			<p>Durable fabrics and honest pricing.</p>
+		</div>
+	</section>
+</main>
+
+{% endblock content %}

@@ -1,0 +1,82 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'anyapp/styles/settings.css' %}">
+{% endblock head %}
+
+{% block content %}
+<div class="container">
+	{% if user.is_authenticated %}
+		<h1>Account Settings</h1>
+		<div class="settings-grid">
+			<section class="panel">
+				<div class="profile">
+					<div class="avatar">{% if user.first_name %}{{ user.first_name|slice:":1" }}{{ user.last_name|slice:":1" }}{% else %}{{ user.username|slice:":2"|upper }}{% endif %}</div>
+					<div>
+						<h3>{{ user.get_full_name|default:user.username }}</h3>
+						<p class="small">Member since {{ user.date_joined|date:"F Y" }}</p>
+					</div>
+				</div>
+
+				<form method="POST" action="">
+					{% csrf_token %}
+					<div class="form-row">
+						<label>First Name</label>
+						<input name="first_name" value="{{ user.first_name }}" placeholder="Enter first name"/>
+					</div>
+					<div class="form-row">
+						<label>Last Name</label>
+						<input name="last_name" value="{{ user.last_name }}" placeholder="Enter last name"/>
+					</div>
+					<div class="form-row">
+						<label>Username</label>
+						<input name="username" value="{{ user.username }}" required/>
+					</div>
+					<div class="form-row">
+						<label>Email</label>
+						<input type="email" name="email" value="{{ user.email }}" placeholder="your@email.com"/>
+					</div>
+					<div class="form-row">
+						<label>Country</label>
+						<select name="country">
+							<option>United Kingdom</option>
+							<option>United States</option>
+							<option>Canada</option>
+							<option>Australia</option>
+							<option>France</option>
+							<option>Germany</option>
+							<option>Italy</option>
+							<option>Spain</option>
+							<option>Netherlands</option>
+							<option>Japan</option>
+							<option>India</option>
+							<option>Brazil</option>
+						</select>
+					</div>
+					<button class="save-btn" type="submit">Save changes</button>
+				</form>
+			</section>
+
+			<aside class="panel">
+				<h4>Account actions</h4>
+				<p class="small">Manage your password, payment methods, and addresses.</p>
+				<div style="margin-top:1rem;display:flex;flex-direction:column;gap:.5rem">
+					<a class="btn" href="#">Change password</a>
+					<a class="btn outline" href="#">Manage addresses</a>
+				</div>
+			</aside>
+		</div>
+	{% else %}
+		<div class="panel" style="text-align:center;padding:2rem">
+			<h2>Please sign in</h2>
+			<p class="small">You need an account to view and edit settings.</p>
+			<div style="margin-top:1rem;display:flex;gap:.5rem;justify-content:center">
+				<a class="btn outline" href="{% url 'login' %}">Sign in</a>
+				<a class="btn outline" href="{% url 'register' %}">Register</a>
+			</div>
+		</div>
+	{% endif %}
+</div>
+
+{% endblock content %}

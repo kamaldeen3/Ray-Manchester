@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'anyapp/styles/login.css' %}">
+{% endblock head %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <div class="auth-card">
+        {% if page == 'register' %}
+            <h1>Create account</h1>
+            <form method="POST" action="{% url 'register' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="actions">
+                    <a class="small" href="{% url 'login' %}">Already have an account?</a>
+                    <input class="btn primary" type="submit" value="Register"/>
+                </div>
+            </form>
+        {% else %}
+            <h1>Sign in</h1>
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="Username"/>
+                <input type="password" name="password" placeholder="Password"/>
+                <div class="actions">
+                    <a class="small" href="{% url 'register' %}">Don't have an account?</a>
+                    <input class="btn primary" type="submit" value="Login"/>
+                </div>
+            </form>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}

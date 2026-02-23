@@ -1,0 +1,276 @@
+/* Dark mode styles */
+
+/* Navbar dark mode */
+html.dark-mode .nav {
+  background-color: #1a1a1a;
+}
+
+html.dark-mode .nav > .nav-header > .nav-title {
+  color: #f5f5f5;
+}
+
+html.dark-mode .nav > .nav-links > a {
+  color: #d0d0d0;
+}
+
+html.dark-mode .nav > .nav-links > a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+html.dark-mode .dark-mode-btn {
+  color: #d0d0d0;
+}
+
+html.dark-mode .dark-mode-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Body dark mode */
+html.dark-mode body {
+  background-color: #1a1a1a;
+  color: #f5f5f5;
+}
+
+html.dark-mode :root {
+  --bg: #1a1a1a;
+  --surface: #2d2d2d;
+  --text: #f5f5f5;
+  --muted: #b0b0b0;
+  --card: #2d2d2d;
+  --border: #404040;
+}
+
+/* Home page dark mode */
+html.dark-mode .hero {
+  background: linear-gradient(135deg, rgba(85, 103, 255, 0.15), rgba(255, 107, 107, 0.08));
+}
+
+html.dark-mode .hero h1 {
+  color: #f5f5f5;
+}
+
+html.dark-mode .hero p {
+  color: #b0b0b0;
+}
+
+html.dark-mode .container {
+  color: #f5f5f5;
+}
+
+html.dark-mode .intro h2,
+html.dark-mode .products h3 {
+  color: #f5f5f5;
+}
+
+html.dark-mode .intro p {
+  color: #b0b0b0;
+}
+
+html.dark-mode .card,
+html.dark-mode .info {
+  background-color: #2d2d2d;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+html.dark-mode .card-body h4 {
+  color: #f5f5f5;
+}
+
+html.dark-mode .info h4 {
+  color: #f5f5f5;
+}
+
+html.dark-mode .info p {
+  color: #b0b0b0;
+}
+
+html.dark-mode .price {
+  color: #ff8a8a;
+}
+
+/* Login/Auth page dark mode */
+html.dark-mode .auth-wrapper {
+  background-color: #1a1a1a;
+}
+
+html.dark-mode .auth-card {
+  background-color: #2d2d2d;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+html.dark-mode .auth-card h1 {
+  color: #f5f5f5;
+}
+
+html.dark-mode .auth-card input[type="text"],
+html.dark-mode .auth-card input[type="password"],
+html.dark-mode .auth-card input[type="email"] {
+  background-color: #383838;
+  color: #f5f5f5;
+  border: 1px solid #404040;
+}
+
+html.dark-mode .auth-card input[type="text"]::placeholder,
+html.dark-mode .auth-card input[type="password"]::placeholder,
+html.dark-mode .auth-card input[type="email"]::placeholder {
+  color: #8a8a8a;
+}
+
+html.dark-mode .small {
+  color: #b0b0b0;
+}
+
+/* Services/Products page dark mode */
+html.dark-mode .products-grid {
+  color: #f5f5f5;
+}
+
+html.dark-mode .product-card {
+  background-color: #2d2d2d;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+html.dark-mode .product-card h4 {
+  color: #f5f5f5;
+}
+
+html.dark-mode .product-card .meta {
+  color: #b0b0b0;
+}
+
+html.dark-mode .product-card .price {
+  color: #ff8a8a;
+}
+
+html.dark-mode header h1 {
+  color: #f5f5f5;
+}
+
+html.dark-mode .select {
+  background-color: #2d2d2d;
+  color: #f5f5f5;
+  border: 1px solid #404040;
+}
+
+html.dark-mode .select::placeholder {
+  color: #8a8a8a;
+}
+
+/* About page dark mode */
+html.dark-mode .about-hero {
+  background: linear-gradient(90deg, rgba(85, 103, 255, 0.1), rgba(255, 107, 107, 0.05));
+}
+
+html.dark-mode .about-hero h1 {
+  color: #f5f5f5;
+}
+
+html.dark-mode .about-hero p {
+  color: #b0b0b0;
+}
+
+html.dark-mode .story p {
+  color: #b0b0b0;
+}
+
+html.dark-mode .story h2,
+html.dark-mode .story h3 {
+  color: #f5f5f5;
+}
+
+html.dark-mode .value {
+  background-color: #2d2d2d;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+html.dark-mode .value h4 {
+  color: #f5f5f5;
+}
+
+html.dark-mode .value p {
+  color: #b0b0b0;
+}
+
+/* Settings page dark mode */
+html.dark-mode .panel {
+  background-color: #2d2d2d;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+html.dark-mode .panel h2 {
+  color: #f5f5f5;
+}
+
+html.dark-mode .panel label {
+  color: #b0b0b0;
+}
+
+html.dark-mode .avatar {
+  background-color: rgba(100, 100, 100, 0.3);
+  color: #b0b0b0;
+}
+
+html.dark-mode .form-row input,
+html.dark-mode .form-row textarea {
+  background-color: #383838;
+  color: #f5f5f5;
+  border: 1px solid #404040;
+}
+
+html.dark-mode .form-row input::placeholder,
+html.dark-mode .form-row textarea::placeholder {
+  color: #8a8a8a;
+}
+
+/* Messages dark mode */
+html.dark-mode .messages {
+  color: #f5f5f5;
+}
+
+html.dark-mode .messages li {
+  background-color: #2d2d2d;
+  border-left-color: #5567ff;
+}
+
+/* Buttons dark mode adjustments */
+html.dark-mode .card .btn:not(.outline),
+html.dark-mode .product-card .btn:not(.outline) {
+  background-color: #5567ff;
+  color: #fff;
+}
+
+html.dark-mode .card .btn:not(.outline):hover,
+html.dark-mode .product-card .btn:not(.outline):hover {
+  background-color: #4557dd;
+}
+
+html.dark-mode .btn.primary {
+  background-color: #5567ff;
+  color: #fff;
+}
+
+html.dark-mode .btn.primary:hover {
+  background-color: #4557dd;
+}
+
+html.dark-mode .btn.ghost {
+  color: #5567ff;
+  border-color: rgba(85, 103, 255, 0.3);
+}
+
+html.dark-mode .btn.outline {
+  background-color: transparent;
+  color: #f5f5f5;
+  border: 1px solid #404040;
+}
+
+html.dark-mode .btn.outline:hover {
+  background-color: #383838;
+}
+
+/* Mobile/responsive dark mode */
+@media (max-width: 600px) {
+  html.dark-mode .nav > .nav-links {
+    background-color: #0f0f0f;
+  }
+}

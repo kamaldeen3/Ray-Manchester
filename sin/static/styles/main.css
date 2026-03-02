@@ -1,3 +1,59 @@
+/* High contrast mode */
+html.high-contrast body {
+	background: #000 !important;
+	color: #fff !important;
+}
+
+html.high-contrast .nav {
+	background: #000 !important;
+	border-bottom: 2px solid #fff;
+}
+
+html.high-contrast .nav a,
+html.high-contrast .nav button,
+html.high-contrast .nav .nav-title {
+	color: #ffeb3b !important;
+}
+
+html.high-contrast a {
+	color: #00ffff !important;
+	text-decoration: underline;
+}
+
+html.high-contrast .a11y-panel {
+	background: #000 !important;
+	color: #fff !important;
+	border: 2px solid #fff !important;
+}
+
+html.high-contrast .a11y-btn,
+html.high-contrast button,
+html.high-contrast .btn {
+	background: #000 !important;
+	color: #ffeb3b !important;
+	border: 2px solid #ffeb3b !important;
+}
+
+html.high-contrast input,
+html.high-contrast select,
+html.high-contrast textarea {
+	background: #000 !important;
+	color: #fff !important;
+	border: 2px solid #fff !important;
+}
+
+html.high-contrast .card,
+html.high-contrast .panel,
+html.high-contrast .product-card,
+html.high-contrast .auth-card,
+html.high-contrast .info,
+html.high-contrast .value,
+html.high-contrast .messages li {
+	background: #000 !important;
+	color: #fff !important;
+	border: 2px solid #fff !important;
+	box-shadow: none !important;
+}
  
 
 	

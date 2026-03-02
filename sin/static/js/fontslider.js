@@ -23,7 +23,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        const slider = document.getElementById('fontscale');
+        const slider = document.getElementById('fontScale');
         const down = document.getElementById('fontDown');
         const up = document.getElementById('fontUp');
         const reset = document.getElementById('fontReset');

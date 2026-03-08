@@ -81,6 +81,20 @@ body {
     font-size: 0.9rem;
 }
 
+.show-password {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #6b7280;
+    cursor: pointer;
+    margin-top: 0.25rem;
+}
+
+.show-password input {
+    cursor: pointer;
+}
+
 @media (max-width: 480px) {
     .auth-card {
         padding: 1rem;

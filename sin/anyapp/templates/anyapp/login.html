@@ -23,7 +23,11 @@
             <form action="{% url 'login' %}" method="POST">
                 {% csrf_token %}
                 <input type="text" name="username" placeholder="Username"/>
-                <input type="password" name="password" placeholder="Password"/>
+                <input type="password" name="password" id="password" placeholder="Password"/>
+                <label class="show-password">
+                    <input type="checkbox" id="showPassword"/>
+                    Show password
+                </label>
                 <div class="actions">
                     <a class="small" href="{% url 'register' %}">Don't have an account?</a>
                     <input class="btn primary" type="submit" value="Login"/>
@@ -32,5 +36,16 @@
         {% endif %}
     </div>
 </div>
+
+<script>
+    const showPasswordCheckbox = document.getElementById('showPassword');
+    const passwordInput = document.getElementById('password');
+    
+    if (showPasswordCheckbox && passwordInput) {
+        showPasswordCheckbox.addEventListener('change', function() {
+            passwordInput.type = this.checked ? 'text' : 'password';
+        });
+    }
+</script>
 
 {% endblock content %}

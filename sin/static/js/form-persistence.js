@@ -1,156 +1,156 @@
 // Form Data Persistence - Auto-save and restore form inputs
 document.addEventListener('DOMContentLoaded', function() {
-    const STORAGE_PREFIX = 'form_data_';
-    const EXCLUDE_TYPES = ['password', 'submit', 'button', 'reset', 'file'];
-    const EXCLUDE_NAMES = ['csrfmiddlewaretoken'];
+    const formStoragePrefix = 'form_data_';
+    const excludedInputTypes = ['password', 'submit', 'button', 'reset', 'file'];
+    const excludedFieldNames = ['csrfmiddlewaretoken'];
     
     // Get unique key for current page
-    function getPageKey() {
-        return STORAGE_PREFIX + window.location.pathname;
+    function getPageStorageKey() {
+        return formStoragePrefix + window.location.pathname;
     }
     
     // Load saved form data
-    function loadFormData() {
-        const pageKey = getPageKey();
-        const savedData = localStorage.getItem(pageKey);
+    function restoreSavedFormData() {
+        const storageKey = getPageStorageKey();
+        const serializedData = localStorage.getItem(storageKey);
         
-        if (savedData) {
+        if (serializedData) {
             try {
-                const data = JSON.parse(savedData);
+                const savedFields = JSON.parse(serializedData);
                 
                 // Restore each saved field
-                Object.keys(data).forEach(fieldName => {
-                    const field = document.querySelector(`[name="${fieldName}"]`);
+                Object.keys(savedFields).forEach(fieldName => {
+                    const formField = document.querySelector(`[name="${fieldName}"]`);
                     
-                    if (field) {
-                        if (field.tagName === 'SELECT') {
-                            field.value = data[fieldName];
-                        } else if (field.type === 'checkbox') {
-                            field.checked = data[fieldName];
-                        } else if (field.type === 'radio') {
-                            if (field.value === data[fieldName]) {
-                                field.checked = true;
+                    if (formField) {
+                        if (formField.tagName === 'SELECT') {
+                            formField.value = savedFields[fieldName];
+                        } else if (formField.type === 'checkbox') {
+                            formField.checked = savedFields[fieldName];
+                        } else if (formField.type === 'radio') {
+                            if (formField.value === savedFields[fieldName]) {
+                                formField.checked = true;
                             }
                         } else {
-                            field.value = data[fieldName];
+                            formField.value = savedFields[fieldName];
                         }
                     }
                 });
                 
                 console.log('Form data restored from previous session');
-            } catch (e) {
-                console.error('Error loading form data:', e);
+            } catch (error) {
+                console.error('Error loading form data:', error);
             }
         }
     }
     
     // Save form data
-    function saveFormData() {
-        const pageKey = getPageKey();
-        const formData = {};
+    function persistFormData() {
+        const storageKey = getPageStorageKey();
+        const fieldsToSave = {};
         
         // Find all input fields on the page
-        const fields = document.querySelectorAll('input, select, textarea');
+        const formFields = document.querySelectorAll('input, select, textarea');
         
-        fields.forEach(field => {
+        formFields.forEach(formField => {
             // Skip excluded fields
-            if (EXCLUDE_TYPES.includes(field.type) || 
-                EXCLUDE_NAMES.includes(field.name) || 
-                !field.name) {
+            if (excludedInputTypes.includes(formField.type) || 
+                excludedFieldNames.includes(formField.name) || 
+                !formField.name) {
                 return;
             }
             
             // Save field value
-            if (field.type === 'checkbox') {
-                formData[field.name] = field.checked;
-            } else if (field.type === 'radio') {
-                if (field.checked) {
-                    formData[field.name] = field.value;
+            if (formField.type === 'checkbox') {
+                fieldsToSave[formField.name] = formField.checked;
+            } else if (formField.type === 'radio') {
+                if (formField.checked) {
+                    fieldsToSave[formField.name] = formField.value;
                 }
             } else {
-                formData[field.name] = field.value;
+                fieldsToSave[formField.name] = formField.value;
             }
         });
         
         // Only save if there's data
-        if (Object.keys(formData).length > 0) {
-            localStorage.setItem(pageKey, JSON.stringify(formData));
+        if (Object.keys(fieldsToSave).length > 0) {
+            localStorage.setItem(storageKey, JSON.stringify(fieldsToSave));
         }
     }
     
     // Clear saved form data for current page
-    function clearFormData() {
-        const pageKey = getPageKey();
-        localStorage.removeItem(pageKey);
+    function clearSavedFormData() {
+        const storageKey = getPageStorageKey();
+        localStorage.removeItem(storageKey);
         console.log('Form data cleared');
     }
     
     // Attach listeners to all form fields
-    function attachListeners() {
-        const fields = document.querySelectorAll('input, select, textarea');
+    function bindFormPersistenceListeners() {
+        const formFields = document.querySelectorAll('input, select, textarea');
         
-        fields.forEach(field => {
+        formFields.forEach(formField => {
             // Skip password and excluded fields
-            if (EXCLUDE_TYPES.includes(field.type) || 
-                EXCLUDE_NAMES.includes(field.name)) {
+            if (excludedInputTypes.includes(formField.type) || 
+                excludedFieldNames.includes(formField.name)) {
                 return;
             }
             
             // Save on input change
-            field.addEventListener('input', saveFormData);
-            field.addEventListener('change', saveFormData);
+            formField.addEventListener('input', persistFormData);
+            formField.addEventListener('change', persistFormData);
         });
         
         // Clear data on successful form submission
-        const forms = document.querySelectorAll('form');
-        forms.forEach(form => {
-            form.addEventListener('submit', function(e) {
+        const allForms = document.querySelectorAll('form');
+        allForms.forEach(currentForm => {
+            currentForm.addEventListener('submit', function(_event) {
                 // Only clear if it's not a GET request (search forms)
-                if (form.method.toLowerCase() !== 'get') {
+                if (currentForm.method.toLowerCase() !== 'get') {
                     // Delay clearing to allow form submission
-                    setTimeout(clearFormData, 100);
+                    setTimeout(clearSavedFormData, 100);
                 }
             });
         });
     }
     
     // Add clear button functionality (optional)
-    function addClearButtons() {
-        const forms = document.querySelectorAll('form');
+    function addSearchClearButtons() {
+        const allForms = document.querySelectorAll('form');
         
-        forms.forEach(form => {
+        allForms.forEach(currentForm => {
             // Only add to forms that aren't POST forms (like search)
-            if (form.method.toLowerCase() === 'get') {
-                const clearBtn = document.createElement('button');
-                clearBtn.type = 'button';
-                clearBtn.className = 'clear-form-btn';
-                clearBtn.textContent = '✕';
-                clearBtn.title = 'Clear search';
-                clearBtn.style.cssText = 'margin-left:0.5rem;padding:0.5rem 0.75rem;border:1px solid #ccc;border-radius:6px;background:#fff;cursor:pointer;';
+            if (currentForm.method.toLowerCase() === 'get') {
+                const clearButton = document.createElement('button');
+                clearButton.type = 'button';
+                clearButton.className = 'clear-form-btn';
+                clearButton.textContent = '✕';
+                clearButton.title = 'Clear search';
+                clearButton.style.cssText = 'margin-left:0.5rem;padding:0.5rem 0.75rem;border:1px solid #ccc;border-radius:6px;background:#fff;cursor:pointer;';
                 
-                clearBtn.addEventListener('click', function() {
+                clearButton.addEventListener('click', function() {
                     // Clear form fields
-                    form.reset();
+                    currentForm.reset();
                     // Save the cleared state
-                    saveFormData();
+                    persistFormData();
                     // Show feedback
-                    showNotification('Search cleared', 'info');
+                    showToast('Search cleared', 'info');
                 });
                 
                 // Append to form
-                if (form.classList.contains('filters')) {
-                    form.appendChild(clearBtn);
+                if (currentForm.classList.contains('filters')) {
+                    currentForm.appendChild(clearButton);
                 }
             }
         });
     }
     
     // Show notification
-    function showNotification(message, type = 'info') {
-        const notification = document.createElement('div');
-        notification.className = `form-notification ${type}`;
-        notification.textContent = message;
-        notification.style.cssText = `
+    function showToast(message, type = 'info') {
+        const toast = document.createElement('div');
+        toast.className = `form-notification ${type}`;
+        toast.textContent = message;
+        toast.style.cssText = `
             position: fixed;
             top: 20px;
             right: 20px;
@@ -167,29 +167,29 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         
         if (type === 'success') {
-            notification.style.background = '#ecfdf5';
-            notification.style.color = '#065f46';
+            toast.style.background = '#ecfdf5';
+            toast.style.color = '#065f46';
         }
         
-        document.body.appendChild(notification);
+        document.body.appendChild(toast);
         
         setTimeout(() => {
-            notification.style.opacity = '1';
-            notification.style.transform = 'translateX(0)';
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateX(0)';
         }, 10);
         
         setTimeout(() => {
-            notification.style.opacity = '0';
-            notification.style.transform = 'translateX(400px)';
-            setTimeout(() => notification.remove(), 300);
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(400px)';
+            setTimeout(() => toast.remove(), 300);
         }, 2000);
     }
     
     // Initialize
-    loadFormData();
-    attachListeners();
-    addClearButtons();
+    restoreSavedFormData();
+    bindFormPersistenceListeners();
+    addSearchClearButtons();
     
     // Debug: Add clear all button (optional - for development)
-    // console.log('Form persistence enabled. Current page data:', localStorage.getItem(getPageKey()));
+    // console.log('Form persistence enabled. Current page data:', localStorage.getItem(getPageStorageKey()));
 });
